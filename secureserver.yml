@@ -1,0 +1,20 @@
+---
+- name: Secure SSH
+  hosts: $hosts
+  tasks:
+
+    - name: Disallow password authentication
+      lineinfile: dest=/etc/ssh/sshd_config
+                  regexp="^PasswordAuthentication"
+                  line="PasswordAuthentication no"
+                  state=present
+      notify: Restart ssh
+  tasks:
+    - name: Upload Keys
+         - authorized_key:
+                 user: root
+                 state: present
+                 manage_dir: yes
+                 key: "{{ lookup('file', item') }}"
+            with_items:
+              - "{{ user_public_key }}"
