@@ -11,5 +11,3 @@
       service:
         name: sshd
         state: started
-"secureserver.yml" 22L, 630C
-
