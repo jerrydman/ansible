@@ -11,18 +11,5 @@
       service:
         name: sshd
         state: started
-#  tasks:
-#    - name: Upload Keys
-#         - authorized_key:
-#                 user: root
-#                 state: present
-#                 manage_dir: yes
-#                 key: "{{ lookup('file', item') }}"
-#            with_items:
-#              - "{{ user_public_key }}"
-~                                                                                                                       
-~                                                                                                                       
-~                                                                                                                       
-~                                                                                                                       
 "secureserver.yml" 22L, 630C
 
