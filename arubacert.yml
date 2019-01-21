@@ -1,0 +1,26 @@
+- name: configure top level configuration
+  aruba_config:
+    lines: hostname {{ inventory_hostname }}
+
+- name: copy ssl cert
+
+
+- name: install ssl cert
+    aruba_command:
+      commands: crypto pki-import pem ServerCert "Test_Cert" "self_cert.pem"
+
+- name: switch the cert
+    aruba_config:
+      lines: 
+        - web server profile
+        - switch-cert Test_Cert
+
+- name: restart httpd
+    service:
+      name: httpd
+      state: reloaded
+
+        
+      
+        
+

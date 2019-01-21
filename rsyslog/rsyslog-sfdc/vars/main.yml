@@ -1,0 +1,3 @@
+---
+# vars file for rsyslog-sfdc
+syslog_conf_path: "/etc/syslog"

@@ -1,0 +1,5 @@
+---
+# tasks file for rsyslog-sfdc
+- name: template rsyslog config
+  template: src = sfdc_syslog.conf.j2 dest={{ syslog_conf_path}} owner=root group=root mode=0644 backup
+  notify: restart rsyslog
