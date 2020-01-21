@@ -1,12 +1,4 @@
 #Install Nessus via ansible for SFDC
-
--hosts all
- become: yes
- roles: 
-    - role: ansible-role-nessus-agent
-      nessus_agent_key $CDKEY
-      tags nessus-agent
-
-
-
-      
+---
+- name: Install Nessus
+  hosts: all
