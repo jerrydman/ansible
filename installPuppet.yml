@@ -1,5 +1,6 @@
 ---
 - name: install the puppet rpm from a remote repo
+  hosts: all
   yum:
     name: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
     state: present
