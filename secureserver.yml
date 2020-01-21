@@ -7,8 +7,10 @@
                   regexp="^PasswordAuthentication"
                   line="PasswordAuthentication no"
                   state=present
+      sudo: True
     - name: restart ssh
       service:
         name: sshd
         state: started
+        sudo: True
         
