@@ -1,9 +1,13 @@
-- ec2:
-    key_name: mykey
+---
+- hosts: local
+  connection: local
+  gather_facts: False
+  vars:
     instance_type: t2.micro
-    image: ami-123456
-    wait: yes
-    group: webserver
-    count: 3
-    vpc_subnet_id: subnet-29e63245
-    assign_public_ip: yes
+    security_group: webservers_sg
+    image: ami-db710fa3
+    keypair: fakharany 
+    region: us-west-2
+    count: 1
+  vars_files:
+    - aws_keys.yml
