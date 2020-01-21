@@ -7,8 +7,10 @@
                   regexp="^PasswordAuthentication"
                   line="PasswordAuthentication no"
                   state=present
+      become: yes
     - name: restart ssh
       service:
         name: sshd
         state: started
+        become: yes
         
