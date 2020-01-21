@@ -1,6 +1,6 @@
 ---
 - name: Secure SSH
-  hosts: $hosts
+  hosts: all
   tasks:
     - name: Disallow password authentication
       lineinfile: dest=/etc/ssh/sshd_config
