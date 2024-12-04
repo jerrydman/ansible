@@ -6,7 +6,7 @@
     - name: Install firewalld
       yum:
         name: firewalld
-        state: present
+        state: absent
     - name: Install Apache (httpd) on Amazon Linux
       yum:
         name: httpd
@@ -18,12 +18,6 @@
         state: started
         enabled: yes
 
-    - name: Allow HTTP (port 80) through the firewall
-      firewalld:
-        service: http
-        permanent: yes
-        state: enabled
-        immediate: yes
 
     - name: Create a sample HTML page
       copy:
