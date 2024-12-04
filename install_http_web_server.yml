@@ -8,7 +8,7 @@
         update_cache: yes
 
     - name: Install Nginx
-      apt:
+      dnf:
         name: nginx
         state: present
 
