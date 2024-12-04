@@ -1,6 +1,6 @@
 ---
 - name: Install and configure a web server on port 80
-  hosts: self
+  hosts: localhost
   become: true
   tasks:
     - name: Update package repository
