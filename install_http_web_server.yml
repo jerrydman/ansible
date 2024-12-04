@@ -3,6 +3,10 @@
   hosts: localhost
   become: yes
   tasks:
+    - name: Install firewalld
+      yum:
+        name: firewalld
+        state: present
     - name: Install Apache (httpd) on Amazon Linux
       yum:
         name: httpd
