@@ -1,59 +1,33 @@
 ---
-- name: Install and configure a web server on port 80
+- name: Set up a web server on Amazon Linux
   hosts: localhost
-  become: true
+  become: yes
   tasks:
-    - name: Update package repository
-      dnf:
-        update_cache: yes
-
-    - name: Install Nginx
-      dnf:
-        name: nginx
+    - name: Install Apache (httpd) on Amazon Linux
+      yum:
+        name: httpd
         state: present
 
-    - name: Configure Nginx to serve on port 80
+    - name: Start the Apache service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Allow HTTP (port 80) through the firewall
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
+
+    - name: Create a sample HTML page
       copy:
-        dest: /etc/nginx/nginx.conf
-        content: |
-          server {
-              listen 80;
-              server_name localhost;
-
-              location / {
-                  root /var/www/html;
-                  index index.html;
-              }
-          }
-      notify: restart nginx
-
-    - name: Create web root directory
-      file:
-        path: /var/www/html
-        state: directory
-        owner: www-data
-        group: www-data
-        mode: '0755'
-
-    - name: Create index.html with Hello, World!
-      copy:
+        content: "<html><body><h1>Welcome to the web server!</h1></body></html>"
         dest: /var/www/html/index.html
-        content: |
-          <!DOCTYPE html>
-          <html>
-          <head>
-              <title>Welcome</title>
-          </head>
-          <body>
-              <h1>Hello, World!</h1>
-          </body>
-          </html>
-        owner: www-data
-        group: www-data
         mode: '0644'
 
-  handlers:
-    - name: restart nginx
+    - name: Ensure the Apache service is running
       service:
-        name: nginx
+        name: httpd
         state: restarted
