@@ -7,11 +7,13 @@
       yum:
         name: firewalld
         state: absent
+
     - name: Enable the httpd_can_network_connect boolean for SELinux
       seboolean:
         name: httpd_can_network_connect
         state: yes
         persistent: yes
+
     - name: Install Apache (httpd) on Amazon Linux
       yum:
         name: httpd
@@ -22,8 +24,6 @@
         name: httpd
         state: started
         enabled: yes
-        
-
 
     - name: Create a sample HTML page
       copy:
